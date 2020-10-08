@@ -1,0 +1,159 @@
+.navigation {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: auto;
+    bottom: auto;
+    transform: scale(0);
+    transform-origin: bottom right;
+    transition: transform ease-in-out 0.75s, border-radius ease-in-out 1s;
+    border-radius: 80px;
+    background: linear-gradient(180deg, var(--secondary-colour) 0%, rgb(179, 255, 238) 100%);
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navigation.isOpen {
+    transform: scale(1);
+    border-radius: 0;
+}
+
+.control {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    z-index: 20;
+}
+
+.checkbox {
+    position: absolute;
+    left: -9999px;
+}
+
+.checkbox:checked ~ .icon .bar:first-child,
+.checkbox:checked ~ .icon .bar:last-child {
+    top: 50%;
+}
+
+.checkbox:checked ~ .icon .bar:first-child {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.checkbox:checked ~ .icon .bar:last-child {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+.icon {
+    display: block;
+    cursor: pointer;
+    width: 55px;
+    height: 55px;
+    position: relative;
+    z-index: 10;
+    border-radius: 50px;
+    background: var(--tertiary-colour);
+}
+
+.bar {
+    position: absolute;
+    transition: all ease 0.35s;
+    display: block;
+    width: 35px;
+    height: 3px;
+    background-color: var(--primary-colour);
+    right: auto;
+    bottom: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    --bar-top: 22px;
+}
+
+.bar:first-child {
+    top: var(--bar-top);
+}
+
+.bar:last-child {
+    top: auto;
+    bottom: var(--bar-top);
+}
+
+.navigationList {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    text-align: center;
+    width: 100%;
+}
+
+.navigationListItem {
+    margin-bottom: 30px;
+}
+
+.navigationListItem:last-child {
+    margin-bottom: 0;
+}
+
+.navigationListItem a {
+    font-size: 2.25rem;
+}
+
+.navigationListItem a::after {
+    bottom: 8px;
+    height: 6px;
+}
+
+@media screen and (min-width: 768px) {
+    .header {
+        padding: 20px;
+        border-top: 15px solid var(--secondary-colour);
+        position: relative;
+    }
+
+    .container {
+        max-width: var(--max-width-desktop);
+        margin: 0 auto;
+    }
+
+    .control {
+        display: none;
+    }
+
+    .navigation {
+        width: auto;
+        height: auto;
+        position: static;
+        transform: translateX(0);
+        background: transparent;
+    }
+
+    .navigationList {
+        display: flex;
+    }
+
+    .navigationListItem {
+        margin-right: 35px;
+    }
+
+    .navigationListItem a {
+        font-size: 1.1rem;
+    }
+
+    .navigationListItem a::after {
+        bottom: 4px;
+        height: 3px;
+    }
+
+    .navigationListItem:last-child {
+        margin-right: 0;
+        margin-left: auto;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .navigationListItem a {
+        font-size: 1.5rem;
+    }
+}

@@ -1,23 +1,26 @@
 {
+  "name": "web",
+  "version": "0.1.0",
   "private": true,
-  "name": "personal-website-3",
-  "version": "1.0.0",
   "scripts": {
-    "build": "lerna run build --parallel",
-    "build-web": "lerna bootstrap && (cd web && npm run build)",
-    "build-studio": "lerna bootstrap && (cd studio && npm run build)",
-    "dev": "lerna run dev --parallel",
-    "format": "lerna run format",
-    "graphql-deploy": "lerna run graphql-deploy",
-    "lint": "lerna run lint",
-    "postinstall": "lerna bootstrap",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "next dev -p 3030",
+    "dev:inspect": "NODE_OPTIONS='--inspect' next dev -p 3030",
+    "build": "next build && next export",
+    "format": "prettier-eslint --write \"**/*.js\" \"!.next/**\" \"!node_modules/**\" \"!out/**\"",
+    "lint": "eslint .",
+    "start": "next start"
   },
-  "keywords": [],
-  "author": "Gabriel Laroche<gabriel.laroche@hey.com>",
-  "license": "ISC",
-  "devDependencies": {
-    "@sanity/cli": "^1.150.7",
-    "lerna": "^3.22.1"
+  "dependencies": {
+    "classnames": "^2.2.6",
+    "contentful": "^7.14.6",
+    "cross-env": "^7.0.2",
+    "eslint": "^7.10.0",
+    "fathom-client": "^3.0.0",
+    "lodash.throttle": "^4.1.1",
+    "mailgo": "^0.9.18",
+    "next": "9.5.3",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-markdown": "^4.3.1"
   }
 }
