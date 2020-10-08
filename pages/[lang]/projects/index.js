@@ -14,8 +14,6 @@ function Projects({content, projects, skills, lang}) {
 export const getStaticPaths = async () => {
     const paths = ['en', 'fr'].map((lang) => ({ params: { lang } }));
 
-    console.log(paths)
-
     return {
         paths: paths,
         fallback: false,

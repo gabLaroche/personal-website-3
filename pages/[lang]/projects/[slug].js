@@ -4,7 +4,6 @@ import { locales } from '../../../translations/config';
 import styles from '../../../styles/Project.module.css'
 
 function Project({project, lang}) {
-    // console.log(project)
     return (
         <Layout layout={project?.layout} lang={lang}>
             <h1>{project?.title}</h1>
