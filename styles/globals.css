@@ -1,12 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;800&display=swap');
 :root {
   --primary-colour: #272343;
   --secondary-colour: #DEFFF9;
   --tertiary-colour: #FFD803;
   --off-white: #FFFFFE;
 
-  --font-family: 'Work Sans', sans-serif;
+  --font-family-heading: 'Playfair Display', serif;
+  --font-family-body: 'Work Sans', sans-serif;
 
   --font-size-h1: 1.5rem;
   --font-size-h2: 1.125rem;
@@ -16,8 +17,10 @@
   --max-width-desktop: 1440px;
   --container-padding: 20px;
 
-  --transition-timing: 0.35s;
+  --transition-timing: 0.2s;
   --transition-easing: ease-in-out;
+
+  --default-box-shadow: 0 2px 4px rgba(39, 35, 67, 0.1);
 }
 
 @media screen and (min-width: 1024px) {
@@ -43,8 +46,12 @@ body {
 body {
   color: var(--primary-colour);
   background: var(--off-white);
-  font-family: var(--font-family);
+  font-family: var(--font-family-body);
   margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-heading);
 }
 
 body.noScroll {
@@ -62,20 +69,92 @@ body.noScroll {
   flex-direction: column;
 }
 
-.layout a, .layout a:link {
+.button {
+  padding: 10px 20px;
+  cursor: pointer;
+  border: 2px solid var(--primary-colour);
+  color: var(--primary-colour);
+  background-color: transparent;
+  transition: color 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  font-size: 1.125rem;
+  border-radius: 30px 15px;
+  box-shadow: var(--default-box-shadow);
+}
+.button:hover {
+  color: white;
+}
+
+.button::before {
+  background: var(--tertiary-colour);
+}
+.button::after {
+  background: var(--primary-colour);
+}
+
+.button span:first-child {
+  z-index: 1;
+  position: absolute;
+  width: fit-content;
+  height: fit-content;
+}
+
+.button span:last-child {
+  pointer-events: none;
+  opacity: 0;
+}
+
+.button::before,
+.button::after {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  bottom: 100%;
+  left: 0;
+  transition: transform 0.3s;
+  transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+}
+.button:hover::before,
+.button:hover::after,
+.button:focus::before,
+.button:focus::after {
+  transform: translateY(100%);
+}
+.button:hover::after,
+.button:focus::after {
+  transition-delay: 0.175s;
+}
+
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+  cursor: pointer;
+  font-family: var(--font-family-body);
+}
+
+.layout a:not(.custom-link), .layout a:not(.custom-link):link, .layout .link {
   text-decoration: none;
   display: inline-block;
   position: relative;
   z-index: 1;
   font-weight: 700;
   color: var(--primary-colour);
+  padding: 0 0.1em;
 }
 
-.layout a:hover::after, .layout a:focus::after, .layout a:active::after {
-  transform: rotate(-0.8deg) scaleY(5);
+.layout a:not(.custom-link):hover::after, .layout a:not(.custom-link):focus::after, .layout a:not(.custom-link):active::after,
+.layout .link:hover::after, .layout .link:focus::after, .layout .link:active::after {
+  height: 1em;
 }
 
-.layout a::after {
+.layout a:not(.custom-link)::after,
+.layout .link::after {
   content: '';
   display: block;
   position: absolute;
@@ -83,11 +162,10 @@ body.noScroll {
   bottom: 2px;
   left: 0;
   width: 100%;
-  height: 3px;
+  height: 0.3em;
   background: var(--tertiary-colour);
-  transform: rotate(-0.8deg);
   transform-origin: bottom;
-  transition: transform var(--transition-timing) var(--transition-easing);
+  transition: height var(--transition-timing) var(--transition-easing);
 }
 
 h1 {

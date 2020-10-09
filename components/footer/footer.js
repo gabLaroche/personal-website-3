@@ -1,4 +1,5 @@
 import styles from './footer.module.css';
+import classnames from 'classnames';
 import ReactMarkdown from 'react-markdown';
 
 function Footer({footer}) {
@@ -10,7 +11,7 @@ function Footer({footer}) {
                 <ul className={styles.socialList}>
                     {fields?.socialMediaLinks?.map((socialMediaLink, i) => (
                         <li key={i} className={styles.socialListItem}>
-                            <a href={socialMediaLink.fields.url} aria-label={socialMediaLink.fields.title} className={styles.socialListItemLink}>
+                            <a href={socialMediaLink.fields.url} aria-label={socialMediaLink.fields.title} className={classnames('custom-link', styles.socialListItemLink)}>
                                 <i aria-hidden={true} className={`fab ${socialMediaLink.fields.fontAwesomeIcon}`}></i>
                             </a>
                         </li>

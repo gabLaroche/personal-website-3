@@ -16,15 +16,16 @@ export default Project;
 export async function getStaticPaths() {
     const allProjects = await getAllProjectsWithSlug()
     let paths = locales.map((locale) => {
+        const projectsParam = locale === 'en' ? 'projects' : 'projets';
         return allProjects?.map(({fields}) => {
-            return { params: { lang: locale, slug: fields.slug } }
+            return { params: { lang: locale, projects: projectsParam, slug: fields.slug } }
         });
     });
     paths = paths[0].concat(paths[1])
 
     return {
         paths: paths ?? [],
-        fallback: true,
+        fallback: false,
     }
 }
 

@@ -1,0 +1,75 @@
+.hero {
+    text-align: center;
+    padding: 0 20px;
+}
+
+.avatarContainer {
+    position: relative;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.avatarContainer img {
+    border-radius: 300px;
+    border: 10px solid var(--secondary-colour);
+}
+
+.avatarContainer svg {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+}
+
+.avatarContainer svg:first-of-type {
+    top: 60px;
+    left: -20px;
+    transform: rotate(-28deg);
+}
+
+.avatarContainer svg:nth-of-type(2) {
+    width: 40px;
+    height: 40px;
+    top: 20px;
+    right: 0;
+    transform: rotate(10deg);
+}
+
+.avatarContainer svg:last-of-type {
+    width: 60px;
+    height: 60px;
+    top: 160px;
+    right: -25px;
+    transform: rotate(60deg);
+}
+
+.title {
+    font-weight: 400;
+}
+
+.title strong {
+    font-weight: 800;
+}
+
+.projectsContainer {
+    background: var(--secondary-colour);
+    padding: 50px 20px 240px;
+    position: relative;
+}
+
+.sectionTitle {
+    font-weight: 800;
+    text-align: center;
+}
+
+.wave {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.wave:last-of-type {
+    bottom: 0;
+    top: auto;
+    transform: rotate(180deg) scaleX(-1);
+}

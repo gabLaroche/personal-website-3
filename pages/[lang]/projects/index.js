@@ -2,8 +2,9 @@ import Layout from '../../../components/layout/layout';
 import { getPage, getAllEntries } from '../../../lib/api';
 import styles from '../../../styles/Projects.module.css'
 import ProjectList from '../../../components/project-list/project-list';
+import {locales} from '../../../translations/config';
 
-function Projects({content, projects, skills, lang}) {
+export default function ProjectsPage({content, projects, skills, lang}) {
     return (
         <Layout layout={content.layout} lang={lang}>
             <ProjectList projects={projects} />
@@ -12,10 +13,8 @@ function Projects({content, projects, skills, lang}) {
 }
 
 export const getStaticPaths = async () => {
-    const paths = ['en', 'fr'].map((lang) => ({ params: { lang } }));
-
     return {
-        paths: paths,
+        paths: locales.map((lang) => ({ params: { lang } })),
         fallback: false,
     };
 };
@@ -30,5 +29,3 @@ export async function getStaticProps(context) {
         props: { content, projects, skills, lang },
     }
 }
-
-export default Projects

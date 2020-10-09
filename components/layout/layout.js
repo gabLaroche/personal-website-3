@@ -12,6 +12,7 @@ function Layout({ children, layout, config, pageTitle, lang }) {
         if (lang !== localStorage.getItem('locale')) {
             localStorage.setItem('locale', lang)
         }
+        document.querySelector('html').setAttribute('lang', lang)
     }, [])
     return (
         <div className={'layout'}>

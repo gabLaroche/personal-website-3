@@ -74,6 +74,11 @@ function Header({mainNavigation}) {
                     </label>
                 </div>
                 <nav className={classnames(styles.navigation, isMenuOpened && styles.isOpen)}>
+                    <Link href='/'>
+                        <a className={classnames(styles.logo, 'custom-link')}>
+                            <img src={'/logo.svg'} />
+                        </a>
+                    </Link>
                     <ul className={styles.navigationList}>
                         {fields?.navigation?.map((link, i) => (
                             <li key={i} className={styles.navigationListItem}>
@@ -90,12 +95,12 @@ function Header({mainNavigation}) {
                                 )}
                             </li>
                         ))}
-                        <li className={styles.navigationListItem}>
-                            <button onClick={switchLanguage} type='button'>
-                                {fields?.switchLanguageLabel}
-                            </button>
-                        </li>
                     </ul>
+                    <div className={styles.switchLangContainer}>
+                        <button className={'link'} onClick={switchLanguage} type='button'>
+                            {fields?.switchLanguageLabel}
+                        </button>
+                    </div>
                 </nav>
             </div>
         </header>

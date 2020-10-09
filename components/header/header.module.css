@@ -12,9 +12,7 @@
     border-radius: 80px;
     background: linear-gradient(180deg, var(--secondary-colour) 0%, rgb(179, 255, 238) 100%);
     z-index: 10;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    text-align: center;
 }
 
 .navigation.isOpen {
@@ -54,6 +52,7 @@
     position: relative;
     z-index: 10;
     border-radius: 50px;
+    box-shadow: var(--default-box-shadow);
     background: var(--tertiary-colour);
 }
 
@@ -92,17 +91,28 @@
     margin-bottom: 30px;
 }
 
-.navigationListItem:last-child {
-    margin-bottom: 0;
-}
-
-.navigationListItem a {
+.navigationListItem a,
+.switchLangContainer button {
     font-size: 2.25rem;
 }
 
-.navigationListItem a::after {
+.navigationListItem a::after,
+.switchLangContainer button::after {
     bottom: 8px;
-    height: 6px;
+}
+
+.logo {
+    margin: 25vh 0 35px;
+    width: 90px;
+    transition: transform var(--transition-timing) var(--transition-easing);
+}
+.logo:hover, .logo:focus {
+    transform: scale(1.1) rotate(-15deg);
+}
+.navigation .logo::after,
+.navigation .logo:visited::after,
+.navigation .logo:active::after {
+    display: none;
 }
 
 @media screen and (min-width: 768px) {
@@ -127,33 +137,43 @@
         position: static;
         transform: translateX(0);
         background: transparent;
+        display: flex;
+        align-items: center;
+        flex-wrap: nowrap;
     }
 
     .navigationList {
         display: flex;
+        width: auto;
     }
 
     .navigationListItem {
         margin-right: 35px;
+        margin-bottom: 0;
     }
 
-    .navigationListItem a {
+    .navigationListItem a,
+    .switchLangContainer button {
         font-size: 1.1rem;
     }
 
-    .navigationListItem a::after {
+    .navigationListItem a::after,
+    .switchLangContainer button::after {
         bottom: 4px;
-        height: 3px;
     }
 
-    .navigationListItem:last-child {
-        margin-right: 0;
+    .logo {
+        margin: 0 35px 0 0;
+    }
+
+    .switchLangContainer {
         margin-left: auto;
     }
 }
 
 @media screen and (min-width: 1024px) {
-    .navigationListItem a {
+    .navigationListItem a,
+    .switchLangContainer button {
         font-size: 1.5rem;
     }
 }

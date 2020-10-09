@@ -5,6 +5,8 @@ import styles from '../../styles/Home.module.css'
 import Link from 'next/link';
 import ProjectList from '../../components/project-list/project-list';
 import SkillList from '../../components/skill-list/skill-list';
+import Svg from '../../components/svg/svg';
+import {locales} from '../../translations/config';
 
 function Home({content, lang}) {
     return (
@@ -12,21 +14,27 @@ function Home({content, lang}) {
             <div>
                 <section className={styles.hero}>
                     <div className={styles.avatarContainer}>
-                        <img src={content.avatar.fields.file.url} />
+                        <Svg name={'bug-outline'} />
+                        <Svg name={'bug-fill'} />
+                        <Svg name={'bug-outline'} />
+                        <img src={`${content.avatar.fields.file.url}?w=215&h=215`} />
                     </div>
                     <h1 className={styles.title}><ReactMarkdown source={content.title} /></h1>
                 </section>
                 <section className={styles.projectsContainer}>
-                    <h2>{content.featuredProjectsTitle}</h2>
+                    <Svg className={styles.wave} name={'wave'} fillColour={'#FFFFFE'} />
+                    <h2 className={styles.sectionTitle}>{content.featuredProjectsTitle}</h2>
                     <ProjectList projects={content.featuredProjects} />
                     <Link href={content.viewAllProjectsButtonUrl}>
-                        <a>
-                            {content.viewAllProjectsButtonLabel.fields.title}
+                        <a className={'button custom-link'}>
+                            <span>{content.viewAllProjectsButtonLabel}</span>
+                            <span aria-hidden={'true'}>{content.viewAllProjectsButtonLabel}</span>
                         </a>
                     </Link>
+                    <Svg className={styles.wave} name={'wave'} fillColour={'#FFFFFE'} />
                 </section>
                 <section className={styles.skillsContainer}>
-                    <h2>{content.skillsTitle}</h2>
+                    <h2 className={styles.sectionTitle}>{content.skillsTitle}</h2>
                     <SkillList skills={content.featuredSkills} />
                     <ReactMarkdown source={content.skillUpsell} />
                 </section>
@@ -38,7 +46,7 @@ function Home({content, lang}) {
 
 export const getStaticPaths = async () => {
     return {
-        paths: ['en', 'fr'].map((lang) => ({ params: { lang } })),
+        paths: locales.map((lang) => ({ params: { lang } })),
         fallback: false,
     };
 };

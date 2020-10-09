@@ -8,7 +8,7 @@
     "build": "next build && next export",
     "format": "prettier-eslint --write \"**/*.js\" \"!.next/**\" \"!node_modules/**\" \"!out/**\"",
     "lint": "eslint .",
-    "start": "next start"
+    "start": "next start -p 8080"
   },
   "dependencies": {
     "classnames": "^2.2.6",
