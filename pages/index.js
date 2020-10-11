@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import Head from 'next/head';
-
 import { getInitialLocale } from "../translations/getInitialLocale";
 
 const Index = () => {

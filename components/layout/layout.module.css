@@ -1,6 +1,9 @@
 .container {
+    flex-grow: 1;
+}
+
+.container section {
     max-width: var(--max-width-desktop);
     margin: 0 auto;
-    flex-grow: 1;
 }
 

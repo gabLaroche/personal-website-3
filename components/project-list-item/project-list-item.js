@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
+import styles from './project-list-item.module.css';
 import { getInitialLocale } from '../../translations/getInitialLocale';
 import {useIsomorphicLayoutEffect } from '../../hooks/useIsomorphicLayoutEffect';
 
@@ -11,9 +12,9 @@ function ProjectListItem({project}) {
     }, [])
 
     return (
-        <li>
+        <li className={styles.projectListItem}>
             <Link href={projectUrl}>
-                <a>
+                <a className={'custom-link'}>
                     {project.fields.mainImage &&
                         <span>
                             <img src={project.fields.mainImage.fields.file.url} />

@@ -1,0 +1,10 @@
+.skills {
+    list-style-type: none;
+    padding: 0 20px;
+    margin: 0 auto;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(3, 200px);
+    grid-template-rows: repeat(2, 200px);
+    grid-gap: 60px;
+}
