@@ -11,9 +11,9 @@
 
   --font-size-h1: 1.5rem;
   --font-size-h2: 1.125rem;
-  --font-size-body-xlg: 1.5rem;
-  --font-size-body-lg: 1.125rem;
   --font-size-body-small: 1rem;
+  --font-size-body-lg: 1.125rem;
+  --font-size-body-xlg: var(--font-size-body-small);
 
   --max-width-desktop: 1440px;
   --container-padding: 20px;
@@ -22,13 +22,14 @@
   --transition-easing: ease-in-out;
 
   --default-box-shadow: 0 2px 4px rgba(39, 35, 67, 0.1);
-  --default-box-shadow-hover: 0 6px 8px rgba(39, 35, 67, 0.1);
+  --default-box-shadow-hover: 0 12px 6px rgba(39, 35, 67, 0.1);
 }
 
 @media screen and (min-width: 768px) {
   :root {
     --font-size-h1: 2rem;
     --font-size-h2: 1.5rem;
+    --font-size-body-xlg: 1.5rem;
   }
 }
 
@@ -128,4 +129,8 @@ h2 {
 
 img {
   max-width: 100%;
+}
+
+body .m-modal p, body .m-modal span, body .m-modal strong, body .m-modal a {
+  font-family: var(--font-family-body);
 }

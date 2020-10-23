@@ -11,7 +11,7 @@ import Button from '../../components/button/button';
 function Home({content, lang}) {
     return (
         <Layout layout={content.layout} lang={lang}>
-            <div>
+            <div className={styles.home}>
                 <section className={styles.hero}>
                     <div className={styles.avatarContainer}>
                         <div>
@@ -35,8 +35,8 @@ function Home({content, lang}) {
                 <section className={styles.skillsContainer}>
                     <h2 className={styles.sectionTitle}>{content.skillsTitle}</h2>
                     <SkillList skills={content.featuredSkills} />
-                    <ReactMarkdown source={content.skillUpsell} />
-                    <ReactMarkdown source={content.aboutMeText} />
+                    <ReactMarkdown className={styles.skillUpsell} source={content.skillUpsell} />
+                    <ReactMarkdown className={styles.aboutMeText} source={content.aboutMeText} />
                 </section>
             </div>
         </Layout>

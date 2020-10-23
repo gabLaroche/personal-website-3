@@ -4,7 +4,23 @@
     margin: 0 auto;
     display: grid;
     justify-content: center;
-    grid-template-columns: repeat(3, 200px);
-    grid-template-rows: repeat(2, 200px);
-    grid-gap: 60px;
+    grid-template-columns: repeat(3, 90px);
+    grid-template-rows: repeat(2, 90px);
+    grid-gap: 15px;
+}
+
+@media (min-width: 768px) {
+    .skills {
+        grid-template-columns: repeat(3, 150px);
+        grid-template-rows: repeat(2, 150px);
+        grid-gap: 30px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .skills {
+        grid-template-columns: repeat(3, 200px);
+        grid-template-rows: repeat(2, 200px);
+        grid-gap: 60px;
+    }
 }

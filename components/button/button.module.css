@@ -13,7 +13,7 @@
     transition: color var(--transition-timing) var(--transition-easing);
 }
 
-.button:hover {
+.button:hover, .button:focus, .button:active {
     color: white;
 }
 

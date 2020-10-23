@@ -19,7 +19,7 @@ export default function Svg({name, className, fillColour = '#272343'}) {
                 <svg className={className} viewBox="0 0 1440 70" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0 54.33c431.971-54.33 1005.7 54.296 1440 0V0H0v54.33z" fill={fillColour}/>
                 </svg>
-            )
+            );
         default: return (
             <p>Invalid SVG name</p>
         )

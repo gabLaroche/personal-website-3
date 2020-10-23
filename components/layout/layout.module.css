@@ -4,6 +4,5 @@
 
 .container section {
     max-width: var(--max-width-desktop);
-    margin: 0 auto;
 }
 

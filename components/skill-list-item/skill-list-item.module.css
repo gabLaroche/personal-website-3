@@ -6,6 +6,7 @@
     font-size: var(--font-size-body-xlg);
     height: 100%;
     position: relative;
+    text-align: center;
 }
 
 .skill a::before {

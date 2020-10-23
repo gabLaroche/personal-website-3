@@ -2,7 +2,12 @@
     list-style-type: none;
     padding: 0 0 45px;
     margin: 0;
+}
+
+@media (min-width: 900px) {
+  .projectList {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 5%;
+  }
 }
