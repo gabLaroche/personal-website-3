@@ -1,3 +1,4 @@
+import React from 'react';
 import SkillListItem from '../skill-list-item/skill-list-item';
 import styles from './skill-list.module.css';
 

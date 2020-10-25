@@ -1,3 +1,4 @@
+import React from 'react';
 import styles from './footer.module.css';
 import classnames from 'classnames';
 import ReactMarkdown from 'react-markdown';

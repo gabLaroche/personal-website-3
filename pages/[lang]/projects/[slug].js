@@ -2,7 +2,6 @@ import React from 'react';
 import Layout from '../../../components/layout/layout';
 import {getProject, getAllProjectsWithSlug, getAllEntries} from '../../../lib/api';
 import { locales } from '../../../translations/config';
-import classnames from 'classnames';
 import styles from '../../../styles/Project.module.css'
 import ReactMarkdown from 'react-markdown';
 

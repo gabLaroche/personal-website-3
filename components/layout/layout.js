@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect } from 'react'
+import React from 'react'
 import Head from 'next/head';
 import Header from '../header/header';
 import Footer from '../footer/footer';

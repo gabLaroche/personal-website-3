@@ -1,3 +1,4 @@
+import React from 'react';
 import Layout from '../../components/layout/layout';
 import { getPage } from '../../lib/api';
 import ReactMarkdown from 'react-markdown';

@@ -1,3 +1,4 @@
+import React from 'react';
 import ProjectListItem from '../project-list-item/project-list-item';
 import styles from './project-list.module.css'
 

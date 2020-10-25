@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import classnames from 'classnames';
 import styles from './skill-filter.module.css'
 import Button from '../button/button';
 
-export default function SkillFilter({skills, filterTitle, clearFilterLabel, activeFilters, addFilter, removefilter, removeAllFilters, router}) {
+export default function SkillFilter({skills, filterTitle, clearFilterLabel, activeFilters, addFilter, removefilter, removeAllFilters}) {
   const [isActive, setIsActive] = useState(true);
 
   const handleOnChange = (event, slug) => {

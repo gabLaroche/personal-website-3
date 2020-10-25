@@ -1,3 +1,4 @@
+/* eslint-disable */
 module.exports = {
     "env": {
         "browser": true,
@@ -20,5 +21,6 @@ module.exports = {
         "react"
     ],
     "rules": {
+        "react/prop-types": "off"
     }
 };
