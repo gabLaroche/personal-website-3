@@ -1,11 +1,31 @@
 import Layout from '../../components/layout/layout';
 import { getPage } from '../../lib/api';
 import {locales} from '../../translations/config';
+import ReactMarkdown from 'react-markdown';
+import styles from '../../styles/About.module.css';
 
 export default function AboutPage({content, lang}) {
     return (
         <Layout layout={content.layout} lang={lang}>
-            <p>Hi</p>
+            <h1 className={styles.title}>{content.title}</h1>
+            <section className={styles.section}>
+                <img src={`${content.aboutMeImage?.fields?.file?.url}?w=455&r=30`} />
+                <div>
+                    <h2>{content.aboutMeTitle}</h2>
+                    <ReactMarkdown source={content.aboutMeText}/>
+                </div>
+            </section>
+            {content.aboutThisWebsiteTitle && content.aboutThisWebsiteText &&
+                <section className={styles.section}>
+                    <div>
+                        <h2>{content.aboutThisWebsiteTitle}</h2>
+                        <ReactMarkdown source={content.aboutThisWebsiteText}/>
+                    </div>
+                    {content.aboutThisWebsiteImage &&
+                        <img src={`${content.aboutThisWebsiteImage?.fields?.file?.url}?w=455&r=30`}/>
+                    }
+                </section>
+            }
         </Layout>
     )
 }

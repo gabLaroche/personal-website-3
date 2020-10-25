@@ -1,0 +1,12 @@
+.title {
+    text-align: center;
+}
+
+.section {
+    max-width: var(--max-width-desktop);
+    margin: 35px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 70px;
+}
