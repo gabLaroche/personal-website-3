@@ -93,7 +93,7 @@
 
 .navigationListItem a,
 .switchLangContainer button {
-    font-size: 2.25rem;
+    font-size: 2rem;
 }
 
 .navigationListItem a::after,
@@ -102,8 +102,9 @@
 }
 
 .logo {
-    margin: 25vh 0 35px;
+    margin: 35px auto;
     width: 90px;
+    display: block;
     transition: transform var(--transition-timing) var(--transition-easing);
 }
 .logo:hover, .logo:focus {

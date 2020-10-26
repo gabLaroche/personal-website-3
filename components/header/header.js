@@ -10,7 +10,7 @@ import { getInitialLocale } from '../../translations/getInitialLocale';
 function Header({mainNavigation}) {
     const [isMenuOpened, setIsMenuOpened] = useState(false);
     const [lastScroll, setLastScroll] = useState(0);
-    const fields = mainNavigation?.fields || {}
+    const fields = mainNavigation?.fields || {};
 
     useEffect(() => {
         setLastScroll(window.pageYOffset);
