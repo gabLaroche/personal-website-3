@@ -34,7 +34,7 @@ export default function ProjectsPage({content, projects, skills, lang}) {
   };
 
     return (
-        <Layout layout={content.layout} lang={lang}>
+        <Layout layout={content.layout} config={content.meta} lang={lang}>
           <section className={styles.container}>
             <h1 className={styles.title}>{content?.title}</h1>
             <SkillFilter

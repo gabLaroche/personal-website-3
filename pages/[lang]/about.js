@@ -7,7 +7,7 @@ import styles from '../../styles/About.module.css';
 
 export default function AboutPage({content, lang}) {
     return (
-        <Layout layout={content.layout} lang={lang}>
+        <Layout layout={content.layout} config={content.meta} lang={lang}>
             <h1 className={styles.title}>{content.title}</h1>
             <section className={styles.section}>
                 <img src={`${content.aboutMeImage?.fields?.file?.url}?w=455&r=30`} />

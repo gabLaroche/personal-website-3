@@ -11,7 +11,7 @@ import Button from '../../components/button/button';
 
 function Home({content, lang}) {
     return (
-        <Layout layout={content.layout} lang={lang}>
+        <Layout layout={content.layout} config={content.meta} lang={lang}>
             <div className={styles.home}>
                 <section className={styles.hero}>
                     <div className={styles.avatarContainer}>

@@ -13,6 +13,16 @@
   margin: 0 auto;
 }
 
+.links {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.links a:first-child {
+    margin-right: 40px;
+}
+
 .section:last-child {
   text-align: center;
 }

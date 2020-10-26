@@ -7,7 +7,7 @@ import ReactMarkdown from 'react-markdown';
 
 function Project({project, lang}) {
     return (
-        <Layout layout={project?.layout} lang={lang}>
+        <Layout layout={project?.layout} config={project?.meta} lang={lang}>
           <div className={styles.container}>
             <h1 className={styles.title}>{project?.title}</h1>
             <section className={styles.grid}>
@@ -15,10 +15,10 @@ function Project({project, lang}) {
                 <img className={styles.img} src={`${project?.mainImage?.fields?.file?.url}?f=top&fit=fill&w=660&h=344&r=35`} alt={project?.title} />
                 <div className={styles.links}>
                   {project?.sourceCodeLabel && project?.sourceCodeUrl &&
-                  <a href={project?.sourceCodeUrl}>{project?.sourceCodeLabel?.fields?.title}</a>
+                    <a href={project?.sourceCodeUrl}>{project?.sourceCodeLabel?.fields?.title}</a>
                   }
                   {project?.demoLabel && project?.demoUrl &&
-                  <a href={project?.demoUrl}>{project?.demoLabel?.fields?.title}</a>
+                    <a href={project?.demoUrl}>{project?.demoLabel?.fields?.title}</a>
                   }
                 </div>
               </div>
@@ -41,14 +41,14 @@ function Project({project, lang}) {
             {project?.sections?.map((section, index) => (
               <section key={index} className={styles.section}>
                 {index % 2 === 1 && section?.fields?.image &&
-                  <img src={section?.fields?.image?.fields?.file?.url}/>
+                  <img src={`${section?.fields?.image?.fields?.file?.url}?r=35`}/>
                 }
                 <div>
                   <h2 className={styles.sectionTitle}>{section?.fields?.title?.fields?.title}</h2>
                   <ReactMarkdown source={section?.fields?.text} />
                 </div>
                 {index % 2 === 0 && section?.fields?.image &&
-                  <img src={section?.fields?.image?.fields?.file?.url}/>
+                  <img src={`${section?.fields?.image?.fields?.file?.url}?r=35`}/>
                 }
               </section>
             ))}

@@ -6,7 +6,7 @@ import styles from './layout.module.css'
 import mailgo from "mailgo";
 import { useIsomorphicLayoutEffect } from '../../hooks/useIsomorphicLayoutEffect'
 
-function Layout({ children, layout, config, pageTitle, lang }) {
+function Layout({ children, layout, config, lang }) {
     mailgo();
     useIsomorphicLayoutEffect(() => {
         if (lang !== localStorage.getItem('locale')) {
@@ -17,9 +17,9 @@ function Layout({ children, layout, config, pageTitle, lang }) {
     return (
         <div className={'layout'}>
             <Head>
-                <title>{config?.title}{pageTitle && ` | ${pageTitle}`}</title>
-                <meta name='description' content={config?.description} />
-                <meta name='keywords' content={config?.keywords?.join(', ')} />
+                <title>{config?.fields?.title}</title>
+                <meta name='description' content={config?.fields?.description} />
+                <meta name='keywords' content={config?.fields?.keywords?.join(', ')} />
             </Head>
             <Header mainNavigation={layout?.fields?.menu} lang={lang} />
             <main className={styles.container}>
