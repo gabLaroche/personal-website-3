@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps }) {
         // Initialize Fathom when the app loads
         Fathom.load('EGIHDIST', {
             url: 'antelope.gabriellaroche.dev',
-            excludedDomains: ['localhost']
+            includedDomains: ['gabriellaroche.dev']
         });
 
         function onRouteChangeComplete() {
