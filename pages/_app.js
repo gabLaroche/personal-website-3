@@ -10,7 +10,7 @@ function MyApp({ Component, pageProps }) {
     useEffect(() => {
         // Initialize Fathom when the app loads
         Fathom.load('EGIHDIST', {
-            url: 'https://antelope.gabriellaroche.dev',
+            url: 'https://antelope.gabriellaroche.dev/script.js',
             includedDomains: ['gabriellaroche.dev']
         });
 
