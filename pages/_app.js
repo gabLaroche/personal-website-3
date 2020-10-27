@@ -9,8 +9,8 @@ function MyApp({ Component, pageProps }) {
 
     useEffect(() => {
         // Initialize Fathom when the app loads
-        Fathom.load('ILNJCBYG', {
-            includedDomains: ['antelope.gabriellaroche.dev'],
+        Fathom.load('EGIHDIST', {
+            url: 'antelope.gabriellaroche.dev',
             excludedDomains: ['localhost']
         });
 
