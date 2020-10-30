@@ -129,6 +129,7 @@ h2 {
 
 img {
   max-width: 100%;
+  border-radius: 35px;
 }
 
 body .m-modal p, body .m-modal span, body .m-modal strong, body .m-modal a {

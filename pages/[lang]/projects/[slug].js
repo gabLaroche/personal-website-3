@@ -2,8 +2,8 @@ import React from 'react';
 import Layout from '../../../components/layout/layout';
 import {getProject, getAllProjectsWithSlug, getAllEntries} from '../../../lib/api';
 import { locales } from '../../../translations/config';
-import styles from '../../../styles/Project.module.css'
 import ReactMarkdown from 'react-markdown';
+import styles from '../../../styles/Project.module.css'
 
 function Project({project, lang}) {
     return (
@@ -12,7 +12,11 @@ function Project({project, lang}) {
             <h1 className={styles.title}>{project?.title}</h1>
             <section className={styles.grid}>
               <div className={styles.column}>
-                <img className={styles.img} src={`${project?.mainImage?.fields?.file?.url}?f=top&fit=fill&w=660&h=344&r=35`} alt={project?.title} />
+                <img
+                    className={styles.img}
+                    src={`${project?.mainImage?.fields?.file?.url}?f=top&fit=fill&w=660&h=344`}
+                    alt={project?.title}
+                />
                 <div className={styles.links}>
                   {project?.sourceCodeLabel && project?.sourceCodeUrl &&
                     <a href={project?.sourceCodeUrl}>{project?.sourceCodeLabel?.fields?.title}</a>
@@ -41,14 +45,14 @@ function Project({project, lang}) {
             {project?.sections?.map((section, index) => (
               <section key={index} className={styles.section}>
                 {index % 2 === 1 && section?.fields?.image &&
-                  <img src={`${section?.fields?.image?.fields?.file?.url}?r=35`}/>
+                  <img src={section?.fields?.image?.fields?.file?.url} alt={section?.fields?.image?.fields?.description}/>
                 }
                 <div>
                   <h2 className={styles.sectionTitle}>{section?.fields?.title?.fields?.title}</h2>
                   <ReactMarkdown source={section?.fields?.text} />
                 </div>
                 {index % 2 === 0 && section?.fields?.image &&
-                  <img src={`${section?.fields?.image?.fields?.file?.url}?r=35`}/>
+                  <img src={section?.fields?.image?.fields?.file?.url} alt={section?.fields?.image?.fields?.description}/>
                 }
               </section>
             ))}

@@ -10,7 +10,7 @@ export default function AboutPage({content, lang}) {
         <Layout layout={content.layout} config={content.meta} lang={lang}>
             <h1 className={styles.title}>{content.title}</h1>
             <section className={styles.section}>
-                <img src={`${content.aboutMeImage?.fields?.file?.url}?w=455&r=30`} />
+                <img src={`${content.aboutMeImage?.fields?.file?.url}?w=455&`} alt={content.aboutMeImage?.fields?.description} />
                 <div>
                     <h2>{content.aboutMeTitle}</h2>
                     <ReactMarkdown source={content.aboutMeText}/>
@@ -23,7 +23,7 @@ export default function AboutPage({content, lang}) {
                         <ReactMarkdown source={content.aboutThisWebsiteText}/>
                     </div>
                     {content.aboutThisWebsiteImage &&
-                        <img src={`${content.aboutThisWebsiteImage?.fields?.file?.url}?w=455&r=30`}/>
+                        <img src={`${content.aboutThisWebsiteImage?.fields?.file?.url}?w=455&`} alt={content.aboutThisWebsiteImage?.fields?.description}/>
                     }
                 </section>
             }
