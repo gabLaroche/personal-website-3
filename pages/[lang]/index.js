@@ -8,7 +8,6 @@ import SkillList from '../../components/skill-list/skill-list';
 import Svg from '../../components/svg/svg';
 import {locales} from '../../translations/config';
 import Button from '../../components/button/button';
-import Image from 'next/image';
 
 function Home({content, lang}) {
     return (
@@ -16,17 +15,12 @@ function Home({content, lang}) {
             <div className={styles.home}>
                 <section className={styles.hero}>
                     <div className={styles.avatarContainer}>
-                        <Image
-                            src={`https://${content.avatar.fields.file.url}`}
-                            alt={content.avatar.fields.description}
-                            width={215}
-                            height={215}
-                        />
                         <div>
-                          <div className={styles.svgContainer}><Svg name={'bug-outline'} /></div>
-                          <div className={styles.svgContainer}><Svg name={'bug-fill'} /></div>
-                          <div className={styles.svgContainer}><Svg name={'bug-outline'} /></div>
+                            <div className={styles.svgContainer}><Svg name={'bug-outline'} /></div>
+                            <div className={styles.svgContainer}><Svg name={'bug-fill'} /></div>
+                            <div className={styles.svgContainer}><Svg name={'bug-outline'} /></div>
                         </div>
+                        <img src={`${content.avatar.fields.file.url}?w=215&h=215`} alt={content.avatar.fields.description} />
                     </div>
                     <h1 className={styles.title}><ReactMarkdown source={content.title} /></h1>
                 </section>
