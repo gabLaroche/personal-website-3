@@ -4,7 +4,8 @@ const nodemailer = require('nodemailer');
 
 export default (req, res) => {
     const { name, email, text } = req.body;
-    const isProdEnv = process.env.NODE_ENV === 'production';
+    // const isProdEnv = process.env.NODE_ENV === 'production';
+    const isProdEnv = false;
 
     const transporter = nodemailer.createTransport({
         host: 'smtp.sendgrid.net',
