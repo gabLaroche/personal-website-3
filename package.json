@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev -p 1234",
     "dev:inspect": "NODE_OPTIONS='--inspect' next dev -p 1234",
-    "build": "next build && next export",
+    "build": "next build",
     "format": "prettier-eslint --write \"**/*.js\" \"!.next/**\" \"!node_modules/**\" \"!out/**\"",
     "lint": "eslint .",
     "start": "next start -p 1234"
