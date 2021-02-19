@@ -2,7 +2,7 @@
 require('dotenv').config();
 const nodemailer = require('nodemailer');
 
-export default (req, res) => {
+module.exports = (req, res) => {
     const { name, email, text } = req.body;
     const isProdEnv = process.env.NODE_ENV === 'production';
 
