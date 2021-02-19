@@ -4,16 +4,18 @@ import Header from '../header/header';
 import Footer from '../footer/footer';
 import styles from './layout.module.css'
 import mailgo from "mailgo";
+import { useRouter } from 'next/router';
 import { useIsomorphicLayoutEffect } from '../../hooks/useIsomorphicLayoutEffect'
 
-function Layout({ children, layout, config, lang }) {
+function Layout({ children, layout, config }) {
+    const { locale } = useRouter();
+
     mailgo();
+
     useIsomorphicLayoutEffect(() => {
-        if (lang !== localStorage.getItem('locale')) {
-            localStorage.setItem('locale', lang)
-        }
-        document.querySelector('html').setAttribute('lang', lang)
-    }, [])
+        document.querySelector('html').setAttribute('lang', locale)
+    }, []);
+
     return (
         <div className={'layout'}>
             <Head>
@@ -21,7 +23,7 @@ function Layout({ children, layout, config, lang }) {
                 <meta name='description' content={config?.fields?.description} />
                 <meta name='keywords' content={config?.fields?.keywords?.join(', ')} />
             </Head>
-            <Header mainNavigation={layout?.fields?.menu} lang={lang} />
+            <Header mainNavigation={layout?.fields?.menu} />
             <main className={styles.container}>
                 {children}
             </main>

@@ -1,13 +1,12 @@
 import React from 'react';
-import Layout from '../../components/layout/layout';
-import { getPage } from '../../lib/api';
-import {locales} from '../../translations/config';
+import Layout from '../components/layout/layout';
+import { getPage } from '../lib/api';
 import ReactMarkdown from 'react-markdown';
-import styles from '../../styles/About.module.css';
+import styles from '../styles/About.module.css';
 
-export default function AboutPage({content, lang}) {
+export default function AboutPage({ content }) {
     return (
-        <Layout layout={content.layout} config={content.meta} lang={lang}>
+        <Layout layout={content.layout} config={content.meta}>
             <h1 className={styles.title}>{content.title}</h1>
             <section className={styles.section}>
                 <img src={`${content.aboutMeImage?.fields?.file?.url}?w=455&`} alt={content.aboutMeImage?.fields?.description} />
@@ -31,18 +30,10 @@ export default function AboutPage({content, lang}) {
     )
 }
 
-export const getStaticPaths = async () => {
-    return {
-        paths: locales.map((lang) => ({ params: { lang } })),
-        fallback: false,
-    };
-};
 
-
-export async function getStaticProps(context) {
-    const lang = context.params.lang
-    const content = await getPage('aboutPage', lang);
+export async function getServerSideProps({ locale }) {
+    const content = await getPage('aboutPage', locale);
     return {
-        props: { content, lang },
+        props: { content },
     }
 }

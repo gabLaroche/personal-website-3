@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import Layout from '../../../components/layout/layout';
-import { getPage, getAllEntries, getProjects } from '../../../lib/api';
-import styles from '../../../styles/Projects.module.css'
-import ProjectList from '../../../components/project-list/project-list';
-import {locales} from '../../../translations/config';
-import SkillFilter from '../../../components/skill-filter/skill-filter';
-import {useRouter} from 'next/router';
+import Layout from '../../components/layout/layout';
+import { getPage, getAllEntries, getProjects } from '../../lib/api';
+import styles from '../../styles/Projects.module.css'
+import ProjectList from '../../components/project-list/project-list';
+import SkillFilter from '../../components/skill-filter/skill-filter';
+import { useRouter } from 'next/router';
 
-export default function ProjectsPage({content, projects, skills, lang}) {
+export default function ProjectsPage({ content, projects, skills }) {
   const router = useRouter();
   const [activeFilters, setActiveFilters] = useState([]);
 
@@ -34,7 +33,7 @@ export default function ProjectsPage({content, projects, skills, lang}) {
   };
 
     return (
-        <Layout layout={content.layout} config={content.meta} lang={lang}>
+        <Layout layout={content.layout} config={content.meta}>
           <section className={styles.container}>
             <h1 className={styles.title}>{content?.title}</h1>
             <SkillFilter
@@ -53,20 +52,11 @@ export default function ProjectsPage({content, projects, skills, lang}) {
     )
 }
 
-export const getStaticPaths = async () => {
+export async function getServerSideProps({ locale }) {
+    const content = await getPage('projectsPage', locale);
+    const projects = await getProjects(locale);
+    const skills = await getAllEntries('skill', locale, 1);
     return {
-        paths: locales.map((lang) => ({ params: { lang } })),
-        fallback: false,
-    };
-};
-
-
-export async function getStaticProps(context) {
-    const lang = context.params.lang
-    const content = await getPage('projectsPage', lang);
-    const projects = await getProjects(lang);
-    const skills = await getAllEntries('skill', lang, 1);
-    return {
-        props: { content, projects, skills, lang },
+        props: { content, projects, skills },
     }
 }

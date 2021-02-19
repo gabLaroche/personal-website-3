@@ -1,14 +1,12 @@
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
-import Layout from '../../components/layout/layout';
-import styles from '../../styles/Contact.module.css';
-import Button from '../../components/button/button';
+import Layout from '../components/layout/layout';
+import styles from '../styles/Contact.module.css';
+import Button from '../components/button/button';
 import classnames from 'classnames';
-import { locales } from '../../translations/config';
-import { getPage } from '../../lib/api';
+import { getPage } from '../lib/api';
 
-export default function ContactPage({content, lang}) {
-
+export default function ContactPage({ content }) {
     const formRef = useRef(null);
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -50,7 +48,7 @@ export default function ContactPage({content, lang}) {
     }
 
     return (
-        <Layout layout={content.layout} config={content.meta} lang={lang}>
+        <Layout layout={content.layout} config={content.meta}>
             { (isLoading || isSuccessful || isErroneous) &&
                 <div className={styles.overlay}>
                     <span className={styles.icon}>
@@ -170,18 +168,9 @@ export default function ContactPage({content, lang}) {
     )
 };
 
-export const getStaticPaths = async () => {
+export async function getServerSideProps({ locale }) {
+    const content = await getPage('contactPage', locale);
     return {
-        paths: locales.map((lang) => ({ params: { lang } })),
-        fallback: false,
-    };
-};
-
-
-export async function getStaticProps(context) {
-    const lang = context.params.lang
-    const content = await getPage('contactPage', lang);
-    return {
-        props: { content, lang },
+        props: { content },
     }
 }

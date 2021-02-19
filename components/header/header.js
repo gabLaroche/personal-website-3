@@ -1,13 +1,13 @@
 import React from 'react';
-import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import throttle from 'lodash.throttle';
 import styles from './header.module.css';
 import classnames from 'classnames';
-import { locales } from '../../translations/config';
-import { getInitialLocale } from '../../translations/getInitialLocale';
+import {useRouter} from 'next/router';
+import LocalLink from '../local-link/local-link';
 
 function Header({mainNavigation}) {
+    const { locale, locales } = useRouter();
     const [isMenuOpened, setIsMenuOpened] = useState(false);
     const [lastScroll, setLastScroll] = useState(0);
     const fields = mainNavigation?.fields || {};
@@ -15,6 +15,7 @@ function Header({mainNavigation}) {
     useEffect(() => {
         setLastScroll(window.pageYOffset);
         window.addEventListener('resize', handleResize);
+
         return () => {
             window.removeEventListener('resize', handleResize);
         }
@@ -35,6 +36,7 @@ function Header({mainNavigation}) {
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
+
         return () => {
             window.removeEventListener('scroll', handleScroll);
         }
@@ -53,8 +55,8 @@ function Header({mainNavigation}) {
     })
 
     const switchLanguage = () => {
-        const newLang = locales.find(locale => locale !== getInitialLocale());
-        const pathName = window.location.pathname.replace(getInitialLocale(), newLang);
+        const newLang = locales.find(lang => lang !== locale && lang !== 'en-CA');
+        const pathName = window.location.pathname.replace(locale, newLang);
         window.location.replace(pathName);
     }
 
@@ -70,16 +72,16 @@ function Header({mainNavigation}) {
                         onChange={() => setIsMenuOpened(!isMenuOpened)}
                     />
                     <label className={styles.icon} htmlFor="menuIconCheck">
-                        <span className={styles.bar}></span>
-                        <span className={styles.bar}></span>
+                        <span className={styles.bar} />
+                        <span className={styles.bar} />
                     </label>
                 </div>
                 <nav className={classnames(styles.navigation, isMenuOpened && styles.isOpen)}>
-                    <Link href='/'>
+                    <LocalLink href='/'>
                         <a className={classnames(styles.logo, 'custom-link')}>
                             <img src={'/logo.svg'} />
                         </a>
-                    </Link>
+                    </LocalLink>
                     <ul className={styles.navigationList}>
                         {fields?.navigation?.map((link, i) => (
                             <li key={i} className={styles.navigationListItem}>
@@ -88,11 +90,11 @@ function Header({mainNavigation}) {
                                         {link.fields.title}
                                     </a>
                                 ) : (
-                                    <Link href={link.fields.url}>
+                                    <LocalLink href={link.fields.url}>
                                         <a>
                                             {link.fields.title}
                                         </a>
-                                    </Link>
+                                    </LocalLink>
                                 )}
                             </li>
                         ))}

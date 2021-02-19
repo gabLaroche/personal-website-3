@@ -1,18 +1,18 @@
 import React from 'react';
-import Link from 'next/link';
 import classnames from 'classnames';
 import styles from './button.module.css';
+import LocalLink from '../local-link/local-link';
 
 export default function Button({href, label, onClick, disabled, type = 'button'}) {
   return (
     <>
       {href ? (
-        <Link href={href}>
+        <LocalLink href={href}>
           <a className={classnames('custom-link', styles.button)}>
             <span>{label}</span>
             <span aria-hidden={'true'}>{label}</span>
           </a>
-        </Link>
+        </LocalLink>
       ) : (
         <button
             type={type}

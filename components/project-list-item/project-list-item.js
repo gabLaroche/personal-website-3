@@ -1,16 +1,15 @@
 import React, { useState } from 'react'
 import classnames from 'classnames';
-import Link from 'next/link'
 import styles from './project-list-item.module.css';
-import { getInitialLocale } from '../../translations/getInitialLocale';
 import {useIsomorphicLayoutEffect } from '../../hooks/useIsomorphicLayoutEffect';
+import LocalLink from '../local-link/local-link';
 
 function ProjectListItem({project, activeFilters}) {
     const [projectUrl, setProjectUrl] = useState('');
     const [skills, setSkills] = useState([])
 
     useIsomorphicLayoutEffect(() => {
-        setProjectUrl(`/${getInitialLocale()}/projects/${encodeURIComponent(project.fields.slug)}`)
+        setProjectUrl(`/projects/${encodeURIComponent(project.fields.slug)}`)
         setSkills(generateSkillsSlug());
     }, []);
 
@@ -22,7 +21,7 @@ function ProjectListItem({project, activeFilters}) {
 
     return (
         <li className={classnames(styles.item, activeFilters?.length > 0 && activeFilters?.some(filter => !skills?.includes(filter)) && styles.hide)}>
-            <Link href={projectUrl}>
+            <LocalLink href={projectUrl}>
                 <a className={classnames('custom-link', styles.link)}>
                     {project.fields.mainImage &&
                         <span className={styles.imgContainer}>
@@ -31,7 +30,7 @@ function ProjectListItem({project, activeFilters}) {
                     }
                     <span className={styles.title}>{project.fields.title}</span>
                 </a>
-            </Link>
+            </LocalLink>
         </li>
     )
 }

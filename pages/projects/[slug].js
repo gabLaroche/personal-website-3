@@ -1,13 +1,12 @@
 import React from 'react';
-import Layout from '../../../components/layout/layout';
-import {getProject, getAllProjectsWithSlug, getAllEntries} from '../../../lib/api';
-import { locales } from '../../../translations/config';
+import Layout from '../../components/layout/layout';
+import {getProject, getAllProjectsWithSlug, getAllEntries} from '../../lib/api';
 import ReactMarkdown from 'react-markdown';
-import styles from '../../../styles/Project.module.css'
+import styles from '../../styles/Project.module.css'
 
-function Project({project, lang}) {
+function Project({ project }) {
     return (
-        <Layout layout={project?.layout} config={project?.meta} lang={lang}>
+        <Layout layout={project?.layout} config={project?.meta}>
           <div className={styles.container}>
             <h1 className={styles.title}>{project?.title}</h1>
             <section className={styles.grid}>
@@ -63,27 +62,11 @@ function Project({project, lang}) {
 
 export default Project;
 
-export async function getStaticPaths() {
-    const allProjects = await getAllProjectsWithSlug()
-    let paths = locales.map((locale) => {
-        return allProjects?.map(({fields}) => {
-            return { params: { lang: locale, slug: fields.slug } }
-        });
-    });
-    paths = paths[0].concat(paths[1])
+export async function getServerSideProps({ params, locale }) {
+    const project = await getProject(params.slug, locale);
+    const skills = await getAllEntries('skill', locale, 1);
 
     return {
-        paths: paths ?? [],
-        fallback: false,
-    }
-}
-
-export async function getStaticProps({ params }) {
-    const lang = params.lang;
-    const project = await getProject(params.slug, lang);
-    const skills = await getAllEntries('skill', lang, 1);
-
-    return {
-        props: { project, skills, lang },
+        props: { project, skills },
     }
 }
