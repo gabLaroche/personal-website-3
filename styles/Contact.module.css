@@ -93,4 +93,5 @@
 
 .textarea {
     height: 150px;
+    font-family: var(--font-family-body);
 }
