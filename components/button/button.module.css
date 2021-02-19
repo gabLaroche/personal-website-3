@@ -8,13 +8,19 @@
     overflow: hidden;
     display: inline-block;
     font-size: 1.125rem;
-    border-radius: 30px 15px;
+    border-radius: 30px;
     box-shadow: var(--default-box-shadow);
     transition: color var(--transition-timing) var(--transition-easing);
 }
 
 .button:hover, .button:focus, .button:active {
     color: white;
+}
+
+.button:disabled {
+    cursor: default;
+    pointer-events: none;
+    opacity: 0.5;
 }
 
 .button::before {

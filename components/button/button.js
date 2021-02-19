@@ -1,9 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
-import classnames from 'classnames'
-import styles from './button.module.css'
+import classnames from 'classnames';
+import styles from './button.module.css';
 
-export default function Button({href, label, onClick}) {
+export default function Button({href, label, onClick, disabled, type = 'button'}) {
   return (
     <>
       {href ? (
@@ -14,7 +14,13 @@ export default function Button({href, label, onClick}) {
           </a>
         </Link>
       ) : (
-        <button type={'button'} onClick={onClick} className={styles.button}>
+        <button
+            type={type}
+            onClick={onClick}
+            className={styles.button}
+            disabled={disabled}
+            aria-disabled={disabled}
+        >
           <span>{label}</span>
           <span aria-hidden={'true'}>{label}</span>
         </button>

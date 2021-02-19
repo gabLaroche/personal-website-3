@@ -20,6 +20,7 @@
 
   --transition-timing: 0.2s;
   --transition-easing: ease-in-out;
+  --transition: var(--transition-timing) var(--transition-easing);
 
   --default-box-shadow: 0 2px 4px rgba(39, 35, 67, 0.1);
   --default-box-shadow-hover: 0 12px 6px rgba(39, 35, 67, 0.1);
