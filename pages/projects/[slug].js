@@ -1,6 +1,6 @@
 import React from 'react';
 import Layout from '../../components/layout/layout';
-import {getProject, getAllProjectsWithSlug, getAllEntries} from '../../lib/api';
+import {getProject, getAllEntries} from '../../lib/api';
 import ReactMarkdown from 'react-markdown';
 import styles from '../../styles/Project.module.css'
 
