@@ -6,7 +6,15 @@
     max-width: var(--max-width-desktop);
     margin: 35px auto;
     padding: 0 20px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-column-gap: 70px;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+@media screen and (min-width: 768px) {
+    .section {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-column-gap: 70px;
+    }
 }
