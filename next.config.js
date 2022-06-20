@@ -30,6 +30,18 @@ module.exports = {
         locale: false,
         permanent: false,
       },
+      {
+        source: '/en-CA/blog',
+        destination: '/en/blog',
+        locale: false,
+        permanent: false,
+      },
+      {
+        source: '/en-CA/blog/:slug',
+        destination: '/en/blog/:slug',
+        locale: false,
+        permanent: false,
+      },
     ]
   },
 }

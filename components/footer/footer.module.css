@@ -29,12 +29,13 @@
 .socialListItemLink:active {
     color: var(--primary-colour);
 }
-.socialListItemLink:hover i, .socialListItemLink:focus i {
+.socialListItemLink:hover i, .socialListItemLink:focus i, .socialListItemLink:focus-visible i {
     transform: scale(1.1) rotate(-15deg);
 }
 
 .socialListItem:nth-child(2n) .socialListItemLink:hover i,
-.socialListItem:nth-child(2n) .socialListItemLink:focus i {
+.socialListItem:nth-child(2n) .socialListItemLink:focus i,
+.socialListItem:nth-child(2n) .socialListItemLink:focus-visible i {
     transform: scale(1.05) rotate(15deg);
 }
 

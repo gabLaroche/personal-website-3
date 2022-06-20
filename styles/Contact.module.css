@@ -46,7 +46,8 @@
 }
 
 .closeIcon:hover,
-.closeIcon:focus {
+.closeIcon:focus,
+.closeIcon:focus-visible {
     transform: scale(1.1) rotate(-10deg);
 }
 

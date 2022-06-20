@@ -6,7 +6,7 @@ import classnames from 'classnames';
 import {useRouter} from 'next/router';
 import LocalLink from '../local-link/local-link';
 
-function Header({mainNavigation}) {
+function Header({mainNavigation, isBlog}) {
     const { locale, locales } = useRouter();
     const [isMenuOpened, setIsMenuOpened] = useState(false);
     const [lastScroll, setLastScroll] = useState(0);
@@ -79,7 +79,7 @@ function Header({mainNavigation}) {
                 <nav className={classnames(styles.navigation, isMenuOpened && styles.isOpen)}>
                     <LocalLink href='/'>
                         <a className={classnames(styles.logo, 'custom-link')}>
-                            <img src={'/logo.svg'} />
+                            <img src={'/logo.svg'} alt="Home" />
                         </a>
                     </LocalLink>
                     <ul className={styles.navigationList}>
@@ -99,11 +99,13 @@ function Header({mainNavigation}) {
                             </li>
                         ))}
                     </ul>
-                    <div className={styles.switchLangContainer}>
-                        <button className={'link'} onClick={switchLanguage} type='button'>
-                            {fields?.switchLanguageLabel}
-                        </button>
-                    </div>
+                    { !isBlog &&
+                        <div className={styles.switchLangContainer}>
+                            <button className={'link'} onClick={switchLanguage} type='button'>
+                                {fields?.switchLanguageLabel}
+                            </button>
+                        </div>
+                    }
                 </nav>
             </div>
         </header>

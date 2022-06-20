@@ -13,6 +13,7 @@ class MyDocument extends Document {
                     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#013355" />
                     <meta name="msapplication-TileColor" content="#defff9" />
                     <meta name="theme-color" content="#defff9" />
+                    <meta name="monetization" content="$ilp.uphold.com/rewb2d8aQLYQ" />
                 </Head>
                 <body>
                     <Main />

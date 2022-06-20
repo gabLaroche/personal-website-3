@@ -1,0 +1,42 @@
+.modalContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 20;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+}
+
+.modal {
+    background-color: var(--off-white);
+    width: 90%;
+    padding: 1.6rem;
+    border-radius: 5px;
+}
+
+.modalActions {
+    display: grid;
+    justify-content: center;
+    text-align: center;
+    grid-template-rows: repeat(2, auto);
+    grid-gap: 1rem;
+}
+
+@media (min-width: 600px) {
+    .modalActions {
+        text-align: left;
+        grid-template-rows: 1fr;
+        grid-template-columns: repeat(2, auto);
+    }
+}
+@media (min-width: 768px) {
+    .modal {
+        width: 600px;
+    }
+}

@@ -13,7 +13,7 @@
     transition: color var(--transition-timing) var(--transition-easing);
 }
 
-.button:hover, .button:focus, .button:active {
+.button:hover, .button:focus, .button:focus-visible, .button:active {
     color: white;
 }
 
@@ -54,10 +54,13 @@
 .button:hover::before,
 .button:hover::after,
 .button:focus::before,
-.button:focus::after {
+.button:focus::after,
+.button:focus-visible::before,
+.button:focus-visible::after {
     transform: translateY(100%);
 }
 .button:hover::after,
-.button:focus::after {
+.button:focus::after,
+.button:focus-visible::after {
     transition-delay: 0.175s;
 }

@@ -107,7 +107,7 @@
     display: block;
     transition: transform var(--transition-timing) var(--transition-easing);
 }
-.logo:hover, .logo:focus {
+.logo:hover, .logo:focus, .logo:focus-visible {
     transform: scale(1.1) rotate(-15deg);
 }
 .navigation .logo::after,

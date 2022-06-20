@@ -99,8 +99,8 @@ button {
   color: var(--primary-colour);
 }
 
-.layout a:not(.custom-link):hover::after, .layout a:not(.custom-link):focus::after, .layout a:not(.custom-link):active::after,
-.layout .link:hover::after, .layout .link:focus::after, .layout .link:active::after {
+.layout a:not(.custom-link):hover::after, .layout a:not(.custom-link):focus::after, .layout a:not(.custom-link):focus-visible::after, .layout a:not(.custom-link):active::after,
+.layout .link:hover::after, .layout .link:focus::after, .layout .link:focus-visible::after, .layout .link:active::after {
   height: 1em;
 }
 

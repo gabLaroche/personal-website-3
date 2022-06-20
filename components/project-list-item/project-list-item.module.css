@@ -20,7 +20,7 @@
   filter: drop-shadow(var(--default-box-shadow));
 }
 
-.link:hover, .link:focus {
+.link:hover, .link:focus, .link:focus-visible {
   transform: translateY(-15px);
   filter: drop-shadow(var(--default-box-shadow-hover));
 }
