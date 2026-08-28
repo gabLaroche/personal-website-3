@@ -1,23 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import classnames from 'classnames';
 import styles from './project-list-item.module.css';
-import {useIsomorphicLayoutEffect } from '../../hooks/useIsomorphicLayoutEffect';
 import LocalLink from '../local-link/local-link';
 
 function ProjectListItem({project, activeFilters}) {
-    const [projectUrl, setProjectUrl] = useState('');
-    const [skills, setSkills] = useState([])
-
-    useIsomorphicLayoutEffect(() => {
-        setProjectUrl(`/projects/${encodeURIComponent(project.fields.slug)}`)
-        setSkills(generateSkillsSlug());
-    }, []);
-
-    const generateSkillsSlug = () => {
-      return project?.fields?.stack?.map(skill => {
-        return skill?.fields?.slug
-      })
-    };
+    const projectUrl = `/projects/${encodeURIComponent(project.fields.slug)}`;
+    const skills = project?.fields?.stack?.map(skill => skill?.fields?.slug);
 
     return (
         <li className={classnames(styles.item, activeFilters?.length > 0 && activeFilters?.some(filter => !skills?.includes(filter)) && styles.hide)}>
