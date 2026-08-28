@@ -1,0 +1,10 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "mediacrate.gabriellaroche.dev" }],
+      "destination": "https://mediacrate.app",
+      "permanent": true
+    }
+  ]
+}
