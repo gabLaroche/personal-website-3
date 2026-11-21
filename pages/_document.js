@@ -13,6 +13,7 @@ class MyDocument extends Document {
                     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#013355" />
                     <meta name="msapplication-TileColor" content="#defff9" />
                     <meta name="theme-color" content="#defff9" />
+                    <script defer src="https://cloud.umami.is/script.js" data-website-id="30603847-5ab5-474b-962d-719afb1a9f59"></script>
                 </Head>
                 <body>
                     <Main />
