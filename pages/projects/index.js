@@ -5,6 +5,7 @@ import styles from '../../styles/Projects.module.css'
 import ProjectList from '../../components/project-list/project-list';
 import SkillFilter from '../../components/skill-filter/skill-filter';
 import { useRouter } from 'next/router';
+import { redirectDefaultLocale } from '../../lib/redirect-default-locale';
 
 export default function ProjectsPage({ content, projects, skills }) {
   const router = useRouter();
@@ -52,7 +53,10 @@ export default function ProjectsPage({ content, projects, skills }) {
     )
 }
 
-export async function getServerSideProps({ locale }) {
+export async function getServerSideProps(context) {
+    const redirect = redirectDefaultLocale(context);
+    if (redirect) return redirect;
+    const { locale } = context;
     const content = await getPage('projectsPage', locale);
     const projects = await getProjects(locale);
     const skills = await getAllEntries('skill', locale, 1);

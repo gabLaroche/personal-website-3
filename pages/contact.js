@@ -5,6 +5,7 @@ import styles from '../styles/Contact.module.css';
 import Button from '../components/button/button';
 import classnames from 'classnames';
 import { getPage } from '../lib/api';
+import { redirectDefaultLocale } from '../lib/redirect-default-locale';
 
 export default function ContactPage({ content }) {
     const formRef = useRef(null);
@@ -168,7 +169,10 @@ export default function ContactPage({ content }) {
     )
 };
 
-export async function getServerSideProps({ locale }) {
+export async function getServerSideProps(context) {
+    const redirect = redirectDefaultLocale(context);
+    if (redirect) return redirect;
+    const { locale } = context;
     const content = await getPage('contactPage', locale);
     return {
         props: { content },

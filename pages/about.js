@@ -3,6 +3,7 @@ import Layout from '../components/layout/layout';
 import { getPage } from '../lib/api';
 import ReactMarkdown from 'react-markdown';
 import styles from '../styles/About.module.css';
+import { redirectDefaultLocale } from '../lib/redirect-default-locale';
 
 export default function AboutPage({ content }) {
     return (
@@ -31,7 +32,10 @@ export default function AboutPage({ content }) {
 }
 
 
-export async function getServerSideProps({ locale }) {
+export async function getServerSideProps(context) {
+    const redirect = redirectDefaultLocale(context);
+    if (redirect) return redirect;
+    const { locale } = context;
     const content = await getPage('aboutPage', locale);
     return {
         props: { content },

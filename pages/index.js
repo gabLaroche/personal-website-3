@@ -7,6 +7,7 @@ import ProjectList from '../components/project-list/project-list';
 import SkillList from '../components/skill-list/skill-list';
 import Svg from '../components/svg/svg';
 import Button from '../components/button/button';
+import { redirectDefaultLocale } from '../lib/redirect-default-locale';
 
 function Home({ content }) {
     return (
@@ -43,7 +44,10 @@ function Home({ content }) {
     )
 }
 
-export async function getServerSideProps({ locale }) {
+export async function getServerSideProps(context) {
+    const redirect = redirectDefaultLocale(context);
+    if (redirect) return redirect;
+    const { locale } = context;
     const content = await getPage('homepage', locale)
     return {
         props: { content, locale },

@@ -3,6 +3,7 @@ import Layout from '../../components/layout/layout';
 import {getProject, getAllEntries} from '../../lib/api';
 import ReactMarkdown from 'react-markdown';
 import styles from '../../styles/Project.module.css'
+import { redirectDefaultLocale } from '../../lib/redirect-default-locale';
 
 function Project({ project }) {
     return (
@@ -62,7 +63,10 @@ function Project({ project }) {
 
 export default Project;
 
-export async function getServerSideProps({ params, locale }) {
+export async function getServerSideProps(context) {
+    const redirect = redirectDefaultLocale(context);
+    if (redirect) return redirect;
+    const { params, locale } = context;
     const project = await getProject(params.slug, locale);
     const skills = await getAllEntries('skill', locale, 1);
 
