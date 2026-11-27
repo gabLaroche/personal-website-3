@@ -3,11 +3,12 @@ import Layout from '../../components/layout/layout';
 import { getPage, getAllEntries, getProjects } from '../../lib/api';
 import styles from '../../styles/Projects.module.css'
 import ProjectList from '../../components/project-list/project-list';
-import SkillFilter from '../../components/skill-filter/skill-filter';
+// import SkillFilter from '../../components/skill-filter/skill-filter';
 import { useRouter } from 'next/router';
 import { redirectDefaultLocale } from '../../lib/redirect-default-locale';
 
-export default function ProjectsPage({ content, projects, skills }) {
+// export default function ProjectsPage({ content, projects, skills }) {
+export default function ProjectsPage({ content, projects }) {
   const router = useRouter();
   const [activeFilters, setActiveFilters] = useState([]);
 
@@ -21,23 +22,23 @@ export default function ProjectsPage({ content, projects, skills }) {
     setActiveFilters(filterQuery.split(','));
   }, [router]);
 
-  const addFilter = (filter) => {
-    setActiveFilters([...activeFilters, filter]);
-  };
-
-  const removeFilter = (filter) => {
-    setActiveFilters(activeFilters.filter(oldFilter => oldFilter !== filter));
-  };
-
-  const removeAllFilters = () => {
-    setActiveFilters([])
-  };
+//   const addFilter = (filter) => {
+//     setActiveFilters([...activeFilters, filter]);
+//   };
+//
+//   const removeFilter = (filter) => {
+//     setActiveFilters(activeFilters.filter(oldFilter => oldFilter !== filter));
+//   };
+//
+//   const removeAllFilters = () => {
+//     setActiveFilters([])
+//   };
 
     return (
         <Layout layout={content.layout} config={content.meta}>
           <section className={styles.container}>
             <h1 className={styles.title}>{content?.title}</h1>
-            <SkillFilter
+            {/* <SkillFilter
               skills={skills}
               filterTitle={content?.filterSkillsLabel}
               clearFilterLabel={content?.clearFilterLabel?.fields?.title}
@@ -46,7 +47,7 @@ export default function ProjectsPage({ content, projects, skills }) {
               removefilter={removeFilter}
               removeAllFilters={removeAllFilters}
               router={router}
-            />
+            />*/}
             <ProjectList projects={projects} activeFilters={activeFilters} />
           </section>
         </Layout>

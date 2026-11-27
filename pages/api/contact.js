@@ -1,38 +1,48 @@
 /* eslint-disable */
 require('dotenv').config();
-const nodemailer = require('nodemailer');
+const axios = require('axios');
 
-module.exports = (req, res) => {
-    const { name, email, text } = req.body;
-    const isProdEnv = process.env.NODE_ENV === 'production';
+const escapeHtml = (value) =>
+    String(value ?? '').replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
 
-    const transporter = nodemailer.createTransport({
-        host: 'smtp.sendgrid.net',
-        port: isProdEnv ? 465 : 587,
-        secure: isProdEnv,
-        auth: {
-            user: `${process.env.SENDGRID_USER}`,
-            pass: `${process.env.SENDGRID_PASS}`
-        },
-    });
+module.exports = async (req, res) => {
+    if (req.method !== 'POST') {
+        res.setHeader('Allow', 'POST');
+        return res.status(405).send('Method not allowed');
+    }
 
-    const message = {
-        from: `${process.env.CONTACT_FROM}`,
-        to: `${process.env.CONTACT_TO}`,
-        subject: `New message from: ${name}`,
-        text: text,
-        html: `
-            <p>Name: ${name}</p>
-            <p>Email: ${email}</p>
-            <p>${text}</p>
-        `
-    };
+    const { name, email, text } = req.body || {};
 
-    transporter.sendMail(message, (err) => {
-        if (err) {
-            res.send('error' + JSON.stringify(err));
-        } else {
-            res.send('success', message);
-        }
-    });
-}
+    if (!name || !email || !text) {
+        return res.status(400).send('Missing fields');
+    }
+
+    try {
+        await axios.post(
+            'https://api.resend.com/emails',
+            {
+                from: process.env.CONTACT_FROM,
+                to: process.env.CONTACT_TO,
+                reply_to: email,
+                subject: `New message from: ${name}`,
+                text: `Name: ${name}\nEmail: ${email}\n\n${text}`,
+                html: `
+                    <p><strong>Name:</strong> ${escapeHtml(name)}</p>
+                    <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+                    <p style="white-space: pre-wrap">${escapeHtml(text)}</p>
+                `,
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+                    'Content-Type': 'application/json',
+                },
+            }
+        );
+
+        return res.status(200).send('success');
+    } catch (err) {
+        console.error('Resend error:', err.response ? err.response.data : err.message);
+        return res.status(500).send('Failed to send email');
+    }
+};
